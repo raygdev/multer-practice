@@ -3,11 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <form id="form" enctype="multipart/form-data">
+        <label>Description
+          <input type="text" name="description">
+        </label>
+        <label>Upload A Photo
+          <input type="file" name="upload">
+        </label>
+        <button id="button">Submit</button>
+      </form>
+      <img src="http://localhost:3000/8c0e1ae148b0dbe38a9e8a485825b7e4.png" alt="">
+    </div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
