@@ -1,24 +1,22 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import axios from "axios"
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const form = document.getElementById("form");
+const button = document.getElementById("button")
 
-setupCounter(document.querySelector('#counter'))
+
+button.addEventListener('click', (e) => {
+  e.preventDefault()
+  const formData = new FormData(form)
+  const data = Object.fromEntries(formData)
+  const obj = {
+    description: data.description,
+    photo: data.upload
+  }
+  axios.post("http://localhost:3000/upload", obj, {
+    headers: {
+      "Content-Type": "multipart/form-data"
+    }
+  }).then(res => {
+    console.log(res.data.data)
+  }).catch(e => console.log(e))
+})
